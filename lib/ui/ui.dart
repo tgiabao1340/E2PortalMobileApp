@@ -1,0 +1,11 @@
+export 'announcement/announcement_screen.dart';
+export 'home/home_screen.dart';
+export 'login/login_screen.dart';
+export 'profile/profile_screen.dart';
+export 'splash/splash_screen.dart';
+export 'grading_results/grading_results_screen.dart';
+export 'grading_results/detail_screen.dart';
+export 'lecture/lecture_screen.dart';
+export 'timetable/timetable_screen.dart';
+export 'attendance/attandence_screen.dart';
+export 'attendance/detail_screen.dart';

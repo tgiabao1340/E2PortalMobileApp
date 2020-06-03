@@ -1,0 +1,38 @@
+{
+  "moduleClassId": "420300048764",
+  "moduleClassName": "Công nghệ mới",
+  "numOfTSession": 90,
+  "numOfPSession": 15,
+  "numOfCredit": 4,
+  "semester": "HK 2 2016-2020",
+  "startDate": "2020-03-25T17:00:00.000+0000",
+  "endDate": "2020-07-25T17:00:00.000+0000",
+  "formattedStartDate": "26/03/2020",
+  "formattedEndDate": "26/07/2020",
+  "_links": {
+    "self": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764"
+    },
+    "moduleclass": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764"
+    },
+    "faculty": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/faculty"
+    },
+    "timeTables": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/timeTables"
+    },
+    "lecturer": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/lecturer"
+    },
+    "attendances": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/attendances"
+    },
+    "gradingResults": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/gradingResults"
+    },
+    "students": {
+      "href": "http://e2portal.ddns.net/api/moduleclass/420300048764/students"
+    }
+  }
+}

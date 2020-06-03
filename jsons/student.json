@@ -1,0 +1,27 @@
+{
+  "id": "16059211",
+  "firstName": "Bảo",
+  "lastName": "Trần Gia",
+  "gender": true,
+  "dateOfBirth": "1997-12-31T17:00:00.000+0000",
+  "address": "15 Nguyễn Văn Bảo, phường 4, quận Gò Vấp, Thành phố Hồ Chí Minh",
+  "numberPhone": "0987654324",
+  "email": "example_email@email.com",
+  "imageProfile": null,
+  "familyNumber": "0897654324",
+  "formatedDate": "01/01/1998",
+  "_links": {
+    "self": {
+      "href": "http://e2portal.ddns.net/api/student/16059211"
+    },
+    "student": {
+      "href": "http://e2portal.ddns.net/api/student/16059211"
+    },
+    "mainClass": {
+      "href": "http://e2portal.ddns.net/api/student/16059211/mainClass"
+    },
+    "moduleClasses": {
+      "href": "http://e2portal.ddns.net/api/student/16059211/moduleClasses"
+    }
+  }
+}

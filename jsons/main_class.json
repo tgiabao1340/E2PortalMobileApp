@@ -1,0 +1,21 @@
+{
+  "classId": "DHKTPM12BTT",
+  "speciality": "Kỹ Thuật Phần Mềm",
+  "level": "Đại học",
+  "type": "Tiên tiến",
+  "year": "2016-2020",
+  "_links": {
+    "self": {
+      "href": "http://e2portal.ddns.net/api/mainClasss/DHKTPM12BTT"
+    },
+    "mainClass": {
+      "href": "http://e2portal.ddns.net/api/mainClasss/DHKTPM12BTT"
+    },
+    "lecturer": {
+      "href": "http://e2portal.ddns.net/api/mainClasss/DHKTPM12BTT/lecturer"
+    },
+    "faculty": {
+      "href": "http://e2portal.ddns.net/api/mainClasss/DHKTPM12BTT/faculty"
+    }
+  }
+}
