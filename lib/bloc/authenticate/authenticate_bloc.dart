@@ -15,6 +15,9 @@ class AuthenticationUninitialized extends AuthenticationState {}
 
 class AuthenticationAuthenticated extends AuthenticationState {}
 
+
+class AuthenticationAuthenticatedParent extends AuthenticationState {}
+
 class AuthenticationUnauthenticated extends AuthenticationState {}
 
 class AuthenticationLoading extends AuthenticationState {}
@@ -62,19 +65,27 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   @override
   Stream<AuthenticationState> mapEventToState(AuthenticationEvent event) async* {
+    final bool hasToken = await apiAuthRepository.hasToken();
+    final bool isParent = await apiAuthRepository.isParent();
     if (event is AppStarted) {
-      final bool hasToken = await apiAuthRepository.hasToken();
       if (hasToken) {
-        yield AuthenticationAuthenticated();
+        if(isParent){
+          yield AuthenticationAuthenticatedParent();
+        }else{
+          yield AuthenticationAuthenticated();
+        }
       } else {
         yield AuthenticationUnauthenticated();
       }
     }
-
     if (event is LoggedIn) {
       yield AuthenticationLoading();
       await apiAuthRepository.persistToken(event.token);
-      yield AuthenticationAuthenticated();
+      if(isParent){
+        yield AuthenticationAuthenticatedParent();
+      }else{
+        yield AuthenticationAuthenticated();
+      }
     }
 
     if (event is LoggedOut) {
@@ -84,3 +95,4 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     }
   }
 }
+

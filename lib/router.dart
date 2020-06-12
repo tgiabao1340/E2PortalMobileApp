@@ -16,7 +16,8 @@ const String attendanceRoute = '/attandance';
 const String attendanceDetailRoute = '/attandance_detail';
 const String timetableRoute = '/timetable';
 const String lectureRoute = '/lecture';
-
+const String parentRoute = '/parent';
+const String studentListRoute = '/studentList';
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -25,8 +26,14 @@ class Router {
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case loginRoute:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+      case parentRoute:
+        return MaterialPageRoute(builder: (_) => LoginParent());
+      case loginRoute:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case homeRoute:
         return MaterialPageRoute(builder: (_) => HomeScreen());
+      case studentListRoute:
+        return MaterialPageRoute(builder: (_) => ParentScreen());
       case profileRoute:
         return MaterialPageRoute(builder: (_) => ProfileScreen());
       case announcementRoute:

@@ -36,8 +36,9 @@ abstract class LoginEvent extends Equatable {
 
 class LoginRequest extends LoginEvent {
   final LoginBody loginBody;
+  final bool isParent;
 
-  const LoginRequest({@required this.loginBody});
+  const LoginRequest({@required this.loginBody, this.isParent});
 
   @override
   List<Object> get props => [loginBody];
@@ -63,6 +64,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       try {
         final token = await apiAuthRepository.postLoginUser(event.loginBody);
         if (token.error != null) throw token.error;
+        if(event.isParent) sharedPreferencesManager.putBool(SharedPreferencesManager.isParent, true);
+        else sharedPreferencesManager.putBool(SharedPreferencesManager.isParent, false);
         authenticationBloc.add(LoggedIn(token: token));
         yield LoginInitial();
       } catch (error) {

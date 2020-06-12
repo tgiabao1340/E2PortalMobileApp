@@ -79,6 +79,13 @@ class ApiAuthProvider {
         : false;
   }
 
+  /// is Parent ?
+  Future<bool> isParent() async {
+    final isParent = _sharedPreferencesManager
+        .getBool(SharedPreferencesManager.isParent);
+    return isParent != null ? isParent : false;
+  }
+
   /// Luu token
   Future<void> persistToken(Token token) async {
     Map<String, dynamic> data = parseJwt(token.accessToken);

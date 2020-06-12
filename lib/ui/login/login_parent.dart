@@ -10,14 +10,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginParent extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new _LoginScreenState();
+    return new _LoginParentState();
   }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginParentState extends State<LoginParent> {
   final ApiAuthRepository apiAuthRepository = new ApiAuthRepository();
   final TextEditingController _idController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
@@ -62,8 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   body: BlocProvider<LoginBloc>(
                     create: (context) {
                       return LoginBloc(
-                          apiAuthRepository: apiAuthRepository,
-                          authenticationBloc: BlocProvider.of<AuthenticationBloc>(context));
+                        apiAuthRepository: apiAuthRepository,
+                        authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+                      );
                     },
                     child: WillPopScope(
                       onWillPop: onWillPop,
@@ -97,10 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                         Text('E2Portal', style: AppTheme.LogoTextStyle),
                                         SizedBox(height: 40.0),
                                         CustomTextField(
-                                          label: 'Mã Sinh viên',
+                                          label: 'Số điện thoại',
                                           prefixIcon: Icons.account_circle,
                                           controller: _idController,
-                                          hint: 'Nhập mã sinh viên',
+                                          hint: 'Số điện thoại',
                                           validator: validateId,
                                           keyboardType: TextInputType.number,
                                         ),
@@ -153,8 +154,11 @@ class _LoginScreenState extends State<LoginScreen> {
             if (state is! LoginLoading) {
               BlocProvider.of<LoginBloc>(context).add(
                 LoginRequest(
-                  loginBody: LoginBody(id: _idController.text, password: _passwordController.text),
-                  isParent: false,
+                  loginBody: LoginBody(
+                    id: _idController.text,
+                    password: _passwordController.text,
+                  ),
+                  isParent: true,
                 ),
               );
             }
@@ -173,17 +177,17 @@ class _LoginScreenState extends State<LoginScreen> {
       padding: EdgeInsets.symmetric(vertical: 5.0),
       width: double.infinity,
       child: CustomButtonParent(
-        text: 'Dành cho phụ huynh',
+        text: 'Dành cho sinh viên',
         onPressed: () {
-          Navigator.of(context).pushReplacementNamed(parentRoute);
+          Navigator.of(context).pushReplacementNamed(loginRoute);
         },
       ),
     );
   }
 
   String validateId(String id) {
-    if (id.isEmpty) return 'Mã số không được để trống';
-    if (id.length != 8) return 'Mã số gồm 8 số';
+    if (id.isEmpty) return 'Số điện thoại không được để trống';
+    if (id.length != 10) return 'Số điện thoại gồm 10 số';
     return null;
   }
 

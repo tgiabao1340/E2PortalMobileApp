@@ -24,7 +24,7 @@ class CardInfo extends StatelessWidget {
                 style: AppTheme.TextCardLabel,
               ),
             ),
-            FittedBox(
+            Expanded(
               child: Text(
                 textInfo,
                 style: AppTheme.TextCardInfo,

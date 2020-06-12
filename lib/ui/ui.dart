@@ -1,6 +1,8 @@
 export 'announcement/announcement_screen.dart';
 export 'home/home_screen.dart';
 export 'login/login_screen.dart';
+export 'login/login_parent.dart';
+export 'parent/parent_screen.dart';
 export 'profile/profile_screen.dart';
 export 'splash/splash_screen.dart';
 export 'grading_results/grading_results_screen.dart';

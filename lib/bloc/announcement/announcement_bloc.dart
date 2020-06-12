@@ -48,7 +48,6 @@ class AnnouncementBloc extends Bloc<AnnouncementEvent, AnnouncementState>{
     if(event is AnnouncementRequest){
       yield AnnouncementLoading();
       try{
-
         yield AnnouncementInitial();
       }catch(error){
         yield AnnouncementFailure(error: error.toString());

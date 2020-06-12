@@ -24,6 +24,7 @@ class AppTheme{
   static const Color HEADLINE = Color(0xFF094067);
   static const Color PARAGRAPH = Color(0xFF5f6c7b);
   static const Color BUTTON = Color(0xFF3da9fc);
+  static const Color BUTTON_PARENT = Color(0xFFfffffe);
   static const Color BUTTON_TEXT = Color(0xFFfffffe);
   static const Color CARD_BACKGROUND = Color(0xFFfffffe);
   static const Color STROKE = Color(0xFF094067);
@@ -65,7 +66,7 @@ class AppTheme{
   static const LogoTextStyle = TextStyle(
     color: STROKE,
     fontSize: 30,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w900,
     letterSpacing: 5,
     fontFamily: 'OpenSans',
   );
@@ -77,7 +78,7 @@ class AppTheme{
   );
   static const TextCardInfo = TextStyle(
     color: HIGHLIGHT,
-    fontSize: 15,
+    fontSize: 12,
     fontWeight: FontWeight.bold,
     fontFamily: 'OpenSans',
   );
@@ -118,4 +119,14 @@ class AppTheme{
     fontWeight: FontWeight.bold,
     fontFamily: 'OpenSans',
   );
+
+  static const ButtonSecondTextStyle = TextStyle(
+    color: HEADLINE,
+    letterSpacing: 1.5,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'OpenSans',
+  );
+
+
 }

@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import '../../app_config.dart';
 
 class GradingResultScreen extends StatefulWidget {
-final Student student;
+  final Student student;
+
   GradingResultScreen({@required this.student});
 
   @override
@@ -21,18 +22,20 @@ class _GradingResultState extends State<GradingResultScreen> {
   ApiProfileRepository apiProfileRepository = new ApiProfileRepository();
   LinkedHashMap<String, List<ModuleClass>> listBySemester = new LinkedHashMap();
   LinkedHashMap<String, GradingResult> listGradingResult = new LinkedHashMap();
-  _addToListModule(){
+
+  _addToListModule() {
     List<ModuleClass> listModuleClass = widget.student.moduleClasses;
     listModuleClass.forEach((m) {
-      if(!listBySemester.containsKey(m.semester)){
+      if (!listBySemester.containsKey(m.semester)) {
         List<ModuleClass> list = [m];
         listBySemester.putIfAbsent(m.semester, () => list);
-      }else {
+      } else {
         listBySemester[m.semester].add(m);
       }
     });
   }
-  _addToListGrading(){
+
+  _addToListGrading() {
     List<GradingResult> list = widget.student.gradingResults;
     list.forEach((g) {
       listGradingResult.putIfAbsent(g.moduleClassId, () => g);
@@ -56,38 +59,41 @@ class _GradingResultState extends State<GradingResultScreen> {
         backgroundColor: AppTheme.HEADLINE,
       ),
       body: Container(
-          padding: EdgeInsets.all(15),
-          child: Center(
-            child: ListView.builder(
-              itemCount: listBySemester.length,
-              itemBuilder: (context, index) {
-                String key = listBySemester.keys.elementAt(index);
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                      padding: EdgeInsets.all(15),
-                      child: Container(
-                        height: 50,
-                        child: Center(
-                          child: Text(key, style: AppTheme.TextCardInfo,),
+        padding: EdgeInsets.all(15),
+        child: Center(
+          child: ListView.builder(
+            itemCount: listBySemester.length,
+            itemBuilder: (context, index) {
+              String key = listBySemester.keys.elementAt(index);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FlatButton(
+                    padding: EdgeInsets.all(15),
+                    child: Container(
+                      height: 50,
+                      child: Center(
+                        child: Text(
+                          key,
+                          style: AppTheme.TextCardInfo,
                         ),
                       ),
-                      onPressed: ()  {
-                        Map args = new Map();
-                        args.putIfAbsent("semester", () => key);
-                        args.putIfAbsent("list", () => listBySemester[key]);
-                        args.putIfAbsent("gradingResult", () => listGradingResult);
-                        Navigator.pushNamed(context, gradingDetailRoute, arguments: args);
-                      },
                     ),
-                    Divider(),
-                  ],
-                );
-              },
-            ),
-          )),
+                    onPressed: () {
+                      Map args = new Map();
+                      args.putIfAbsent("semester", () => key);
+                      args.putIfAbsent("list", () => listBySemester[key]);
+                      args.putIfAbsent("gradingResult", () => listGradingResult);
+                      Navigator.pushNamed(context, gradingDetailRoute, arguments: args);
+                    },
+                  ),
+                  Divider(),
+                ],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
-
 }

@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
     return RaisedButton(
       elevation: 5.5,
       onPressed: onPressed,
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(5.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5.0),
       ),

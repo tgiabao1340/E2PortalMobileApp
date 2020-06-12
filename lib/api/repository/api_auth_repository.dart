@@ -8,6 +8,8 @@ class ApiAuthRepository{
 
   Future<bool> hasToken() => _apiAuthProvider.hasToken();
 
+  Future<bool> isParent() => _apiAuthProvider.isParent();
+
   Future<bool> changePassword(String newPassword) => _apiAuthProvider.changePassword(newPassword);
 
   Future<void> persistToken(Token token) => _apiAuthProvider.persistToken(token);
