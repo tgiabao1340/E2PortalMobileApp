@@ -1,9 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:e2portal/api/repository/api_auth_repository.dart';
 import 'package:e2portal/api/repository/api_profile_repository.dart';
 import 'package:e2portal/bloc/authenticate/authenticate_bloc.dart';
-import 'package:e2portal/data/shared_preferences_manager.dart';
-import 'package:e2portal/injector/injector.dart';
 import 'package:e2portal/model/model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';

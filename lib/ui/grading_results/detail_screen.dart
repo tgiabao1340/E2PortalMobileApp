@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'dart:ffi';
 import 'package:e2portal/model/model.dart';
 import 'package:e2portal/utilities/utilities.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,8 +13,37 @@ class GradingResultDetailScreen extends StatelessWidget {
   final LinkedHashMap<String, GradingResult> listGradingResult;
   final String semester;
 
-  GradingResultDetailScreen({@required this.listModuleClass, this.semester, this.listGradingResult});
+  GradingResultDetailScreen(
+      {@required this.listModuleClass, this.semester, this.listGradingResult});
 
+  double avgQuiz(GradingResult gradingResult) {
+    List<double> list = [];
+    if (gradingResult.quiz1 != null) list.add(gradingResult.quiz1);
+    if (gradingResult.quiz2 != null) list.add(gradingResult.quiz2);
+    if (gradingResult.quiz3 != null) list.add(gradingResult.quiz3);
+    if (gradingResult.quiz4 != null) list.add(gradingResult.quiz4);
+    if (gradingResult.quiz5 != null) list.add(gradingResult.quiz5);
+    if (list.length == 0) return null;
+    double sum = 0;
+    list.forEach((q) {
+      sum += q;
+    });
+    return sum / list.length;
+  }
+  double avgPra(GradingResult gradingResult) {
+    List<double> list = [];
+    if (gradingResult.practiceScore1 != null) list.add(gradingResult.practiceScore1);
+    if (gradingResult.practiceScore2 != null) list.add(gradingResult.practiceScore2);
+    if (gradingResult.practiceScore3 != null) list.add(gradingResult.practiceScore3);
+    if (gradingResult.practiceScore4 != null) list.add(gradingResult.practiceScore4);
+    if (gradingResult.practiceScore5 != null) list.add(gradingResult.practiceScore5);
+    if (list.length == 0) return null;
+    double sum = 0;
+    list.forEach((q) {
+      sum += q;
+    });
+    return sum / list.length;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +57,8 @@ class GradingResultDetailScreen extends StatelessWidget {
           itemCount: listModuleClass.length,
           itemBuilder: (context, index) {
             ModuleClass moduleClass = listModuleClass.elementAt(index);
-            GradingResult gradingResult = listGradingResult[moduleClass.moduleClassId];
+            GradingResult gradingResult =
+                listGradingResult[moduleClass.moduleClassId];
             return Column(
               children: [
                 GestureDetector(
@@ -57,23 +88,38 @@ class GradingResultDetailScreen extends StatelessWidget {
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.quiz1 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.quiz1
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.quiz2 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.quiz2
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.quiz3 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.quiz3
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.quiz4 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.quiz4
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.quiz5 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.quiz5
+                                              : null),
                                     ),
                                   ],
                                 ),
@@ -86,7 +132,10 @@ class GradingResultDetailScreen extends StatelessWidget {
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.midScore : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.midScore
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 4,
@@ -103,23 +152,38 @@ class GradingResultDetailScreen extends StatelessWidget {
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.practiceScore1 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.practiceScore1
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.practiceScore2 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.practiceScore2
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.practiceScore3 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.practiceScore3
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.practiceScore4 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.practiceScore4
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.practiceScore5 : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.practiceScore5
+                                              : null),
                                     ),
                                   ],
                                 ),
@@ -131,7 +195,10 @@ class GradingResultDetailScreen extends StatelessWidget {
                                     ),
                                     Flexible(
                                       flex: 1,
-                                      child: CardScore(score: gradingResult != null ? gradingResult.endScore : null),
+                                      child: CardScore(
+                                          score: gradingResult != null
+                                              ? gradingResult.endScore
+                                              : null),
                                     ),
                                     Flexible(
                                       flex: 4,
@@ -158,7 +225,10 @@ class GradingResultDetailScreen extends StatelessWidget {
                                                 style: AppTheme.TextCardLabel,
                                               ),
                                               Text(
-                                                gradingResult != null ? gradingResult.averageScore.toString() : " ",
+                                                gradingResult != null
+                                                    ? gradingResult.averageScore
+                                                        .toString()
+                                                    : " ",
                                                 style: AppTheme.TextCardInfo,
                                               ),
                                             ],
@@ -178,13 +248,15 @@ class GradingResultDetailScreen extends StatelessWidget {
                                           alignment: Alignment.center,
                                           child: FittedBox(
                                             child: Text(
-                                              gradingResult != null ? _gpaConverter(gradingResult.averageScore) : " ",
+                                              gradingResult != null
+                                                  ? _gpaConverter(gradingResult
+                                                      .averageScore)
+                                                  : " ",
                                               style: AppTheme.BigTextStyle,
                                             ),
                                           ),
                                         ),
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -211,7 +283,8 @@ class GradingResultDetailScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Container(
-                                  decoration: BoxDecoration(border: Border.all()),
+                                  decoration:
+                                      BoxDecoration(border: Border.all()),
                                   padding: EdgeInsets.all(5),
                                   width: 150,
                                   height: 100,
@@ -222,11 +295,17 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         style: AppTheme.TextCardLabel,
                                       ),
                                       Text(
-                                        gradingResult != null ? _gpaConverter(gradingResult.endScore) : " ",
+                                        gradingResult != null
+                                            ? _gpaConverter(
+                                                gradingResult.endScore)
+                                            : " ",
                                         style: AppTheme.BigTextStyle,
                                       ),
                                       Text(
-                                        gradingResult != null ? gradingResult.averageScore.toString() : " ",
+                                        gradingResult != null
+                                            ? gradingResult.averageScore
+                                                .toString()
+                                            : " ",
                                         style: AppTheme.TextCardInfo,
                                       ),
                                     ],
@@ -235,7 +314,8 @@ class GradingResultDetailScreen extends StatelessWidget {
                                 Expanded(
                                   child: Container(
                                     height: 100,
-                                    decoration: BoxDecoration(border: Border.all()),
+                                    decoration:
+                                        BoxDecoration(border: Border.all()),
                                     padding: EdgeInsets.all(15),
                                     alignment: Alignment.center,
                                     child: Column(children: [
@@ -262,7 +342,8 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
                                             "TK",
                                             style: AppTheme.TextCardLabel,
@@ -271,16 +352,11 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
                                             gradingResult != null
-                                                ? ((gradingResult.quiz1 +
-                                                            gradingResult.quiz2 +
-                                                            gradingResult.quiz3 +
-                                                            gradingResult.quiz4 +
-                                                            gradingResult.quiz5) /
-                                                        5)
-                                                    .toString()
+                                                ? (avgQuiz != null ? avgQuiz(gradingResult).toStringAsFixed(2) : " ")
                                                 : " ",
                                             style: AppTheme.TextCardInfo,
                                           ),
@@ -294,7 +370,8 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
                                             "GK",
                                             style: AppTheme.TextCardLabel,
@@ -303,39 +380,11 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
-                                          child: Text(
-                                            gradingResult != null ? (gradingResult.midScore).toString() : " ",
-                                            style: AppTheme.TextCardInfo,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          width: double.maxFinite,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
-                                          child: Text(
-                                            "TH",
-                                            style: AppTheme.TextCardLabel,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: double.maxFinite,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
                                             gradingResult != null
-                                                ? ((gradingResult.practiceScore1 +
-                                                            gradingResult.practiceScore2 +
-                                                            gradingResult.practiceScore3 +
-                                                            gradingResult.practiceScore4 +
-                                                            gradingResult.practiceScore5) /
-                                                        5)
+                                                ? (gradingResult.midScore)
                                                     .toString()
                                                 : " ",
                                             style: AppTheme.TextCardInfo,
@@ -350,7 +399,36 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
+                                          child: Text(
+                                            "TH",
+                                            style: AppTheme.TextCardLabel,
+                                          ),
+                                        ),
+                                        Container(
+                                          width: double.maxFinite,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
+                                          child: Text(
+                                            gradingResult != null
+                                                ? (avgPra(gradingResult) != null ? avgPra(gradingResult).toStringAsFixed(2) : " ")
+                                                : " ",
+                                            style: AppTheme.TextCardInfo,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: double.maxFinite,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
                                             "CK",
                                             style: AppTheme.TextCardLabel,
@@ -359,9 +437,13 @@ class GradingResultDetailScreen extends StatelessWidget {
                                         Container(
                                           width: double.maxFinite,
                                           alignment: Alignment.center,
-                                          decoration: BoxDecoration(border: Border.all()),
+                                          decoration: BoxDecoration(
+                                              border: Border.all()),
                                           child: Text(
-                                            gradingResult != null ? (gradingResult.endScore).toString() : " ",
+                                            gradingResult != null
+                                                ? (gradingResult.endScore)
+                                                    .toString()
+                                                : " ",
                                             style: AppTheme.TextCardInfo,
                                           ),
                                         ),

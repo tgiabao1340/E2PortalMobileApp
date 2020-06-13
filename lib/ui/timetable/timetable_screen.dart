@@ -91,13 +91,15 @@ class _TimeTableState extends State<TimeTableScreen> {
     List<TimeTable> listTime = _linkedTimetable[dayOfWeek];
     if (listTime == null) return list;
     listTime.forEach((timetable) {
+      //print(timetable.moduleClassId);
       if (dateTime.isBefore(timetable.formatedEndDate) && dateTime.isAfter(timetable.formatedStartDate)) {
         widget.moduleClasses.forEach((m) {
           if (m.moduleClassId == timetable.moduleClassId) {
             ClassTimeData classTimeData = ClassTimeData(moduleClass: m, timeTable: timetable);
             list.add(classTimeData);
           }
-        });
+        }
+        );
       }
     });
     return list;

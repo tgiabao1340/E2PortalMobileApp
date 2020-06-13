@@ -31,8 +31,8 @@ class TimeTable {
     startDate = json['startDate'];
     endDate = json['endDate'];
     moduleClassId = json['moduleClassId'];
-    formatedEndDate = DateFormat("DD/MM/yyyy").parse(json['formatedEndDate']);
-    formatedStartDate = DateFormat("DD/MM/yyyy").parse(json['formatedStartDate']);
+    formatedEndDate = DateFormat("dd/MM/yyyy").parse(json['formatedEndDate']);
+    formatedStartDate = DateFormat("dd/MM/yyyy").parse(json['formatedStartDate']);
   }
 
   Map<String, dynamic> toJson() {

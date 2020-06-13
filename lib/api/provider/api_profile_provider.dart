@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:e2portal/data/announcements_data.dart';
 import 'package:e2portal/data/shared_preferences_manager.dart';
+import 'package:e2portal/data/student_data.dart';
 import 'package:e2portal/data/timetable_data.dart';
 import 'package:e2portal/injector/injector.dart';
 import 'package:e2portal/model/announcement/announcement.dart';
@@ -32,6 +33,19 @@ class ApiProfileProvider {
     }catch(_error, stacktrace) {
       if(_error is DioError) return Student.withError(error: _handleDioError(_error).toString());
       return Student.withError(error: "Mã sinh viên hoặc mật khẩu không đúng");
+    }
+  }
+  Future<StudentData> getListStudent() async {
+    try {
+      final response = await _dio.get('/user/parent', options: Options(headers: {'requiresToken': true}));
+      return StudentData.fromJson(response.data);
+    }catch(_error, stacktrace) {
+      if(_error is IOException){
+        return StudentData.withError("Connection Error!");
+      }else{
+        print(_error.toString());
+        return StudentData.withError("Something went wrong.");
+      }
     }
   }
   Future<AnnouncementsData> getAnnouncements(int page) async {
