@@ -38,14 +38,13 @@ class ApiProfileProvider {
   Future<StudentData> getListStudent() async {
     try {
       final response = await _dio.get('/user/parent', options: Options(headers: {'requiresToken': true}));
-      return StudentData.fromJson(response.data);
-    }catch(_error, stacktrace) {
-      if(_error is IOException){
+      return StudentData.fromJson(response);
+    }catch(_error) {
+      if(_error is DioError){
         return StudentData.withError("Connection Error!");
-      }else{
-        print(_error.toString());
-        return StudentData.withError("Something went wrong.");
       }
+      print(_error);
+      return StudentData.withError("Something went wrong.");
     }
   }
   Future<AnnouncementsData> getAnnouncements(int page) async {

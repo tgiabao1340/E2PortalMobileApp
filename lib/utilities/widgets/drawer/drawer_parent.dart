@@ -37,6 +37,19 @@ class DrawerMenuParent extends StatelessWidget {
                 Navigator.pushNamed(context, studentListRoute);
               },
             ),
+            Divider(),
+            ListTile(
+              title: Text("Thông báo", style: AppTheme.TextCardLabel,),
+              leading: IconButton(
+                icon: Icon(Icons.notifications,
+                  color: AppTheme.STROKE,),
+              ),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.pushNamed(context, announcementRoute);
+              },
+            ),
+            Divider(),
             ListTile(
               title: Text("Đăng Xuất", style: AppTheme.TextCardLabel,),
               leading: IconButton(
